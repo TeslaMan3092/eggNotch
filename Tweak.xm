@@ -24,7 +24,7 @@ static UIView* coverView(void) {
     [coverView setClipsToBounds:YES];
     [coverView.layer setMasksToBounds:YES];
     if([[dict objectForKey:@"smallCorners"] boolValue]) {
-        coverView.layer.cornerRadius = 50;
+        coverView.layer.cornerRadius = 30;
     } else {
         coverView.layer.cornerRadius = 75;        
     }
