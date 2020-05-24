@@ -68,20 +68,6 @@
 			<key>PostNotification</key>
 			<string>com.crkatri.eggNotch.prefsChanged</string>
 		</dict>
-		<!-- <dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<false/>
-			<key>defaults</key>
-			<string>com.crkatri.eggNotch</string>
-			<key>key</key>
-			<string>smallCorners</string>
-			<key>label</key>
-			<string>Have small corner radius</string>
-			<key>PostNotification</key>
-			<string>com.crkatri.eggNotch.prefsChanged</string>
-		</dict> -->
 		<dict>
 			<key>cell</key>
 			<string>PSSliderCell</string>
@@ -99,8 +85,6 @@
 			<true/>
 			<key>isSegmented</key>
 			<false/>
-			<key>label</key>
-			<string>Corner radius</label>
 		</dict>
 		<dict>
 			<key>cell</key>

@@ -27,11 +27,11 @@ static UIView* coverView(void) {
 
     [coverView setClipsToBounds:YES];
     [coverView.layer setMasksToBounds:YES];
-    coverView.layer.cornerRadius = [dict objectForKey:@"cornerRadius"];
-    if (@available(iOS 13.0, *)) {
-        coverView.layer.cornerCurve = kCACornerCurveContinuous;
-    } else {
+    coverView.layer.cornerRadius = [[dict valueForKey:@"CornerRadius"] floatValue];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0 && [[[UIDevice currentDevice] systemVersion] floatValue] < 13.0) {
         coverView.layer.continuousCorners = YES;
+    } else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 13.0) {
+        coverView.layer.cornerCurve = kCACornerCurveContinuous;
     }
 
     return coverView;
