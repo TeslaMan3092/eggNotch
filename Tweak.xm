@@ -28,6 +28,7 @@ static UIView* coverView(void) {
     } else {
         coverView.layer.cornerRadius = 75;        
     }
+    coverView.layer.cornerCurve = kCACornerCurveContinuous;
 
     return coverView;
 }
