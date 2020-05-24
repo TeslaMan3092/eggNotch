@@ -8,6 +8,10 @@ inline NSString *StringForPreferenceKey(NSString *key) {
 
 NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.crkatri.eggNotch.plist"];
 
+@interface CALayer (Undocumented)
+@property (assign) BOOL continuousCorners;
+@end
+
 static UIView* coverView(void) {
 
     // I stole this idea from @LaughingQuoll
@@ -23,12 +27,12 @@ static UIView* coverView(void) {
 
     [coverView setClipsToBounds:YES];
     [coverView.layer setMasksToBounds:YES];
-    if([[dict objectForKey:@"smallCorners"] boolValue]) {
-        coverView.layer.cornerRadius = 30;
+    coverView.layer.cornerRadius = [dict objectForKey:@"cornerRadius"];
+    if (@available(iOS 13.0, *)) {
+        coverView.layer.cornerCurve = kCACornerCurveContinuous;
     } else {
-        coverView.layer.cornerRadius = 75;        
+        coverView.layer.continuousCorners = YES;
     }
-    coverView.layer.cornerCurve = kCACornerCurveContinuous;
 
     return coverView;
 }
