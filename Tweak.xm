@@ -27,7 +27,7 @@ static UIView* coverView(void) {
 
     [coverView setClipsToBounds:YES];
     [coverView.layer setMasksToBounds:YES];
-    coverView.layer.cornerRadius = [[dict valueForKey:@"CornerRadius"] floatValue];
+    coverView.layer.cornerRadius = [[dict valueForKey:@"eggCornerRadius"] doubleValue];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0 && [[[UIDevice currentDevice] systemVersion] floatValue] < 13.0) {
         coverView.layer.continuousCorners = YES;
     } else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 13.0) {
@@ -72,7 +72,7 @@ SBAppStatusBarSettingsAssertion *assertion;
 -(void)layoutSubviews {
 
     %orig;
-    if([[dict objectForKey:@"staticColor"] boolValue]) {
+    if([[dict objectForKey:@"eggStaticColor"] boolValue]) {
         self.foregroundColor = [UIColor cscp_colorFromHexString:StringForPreferenceKey(@"eggNotchTextColor")];
     }
 
@@ -80,7 +80,7 @@ SBAppStatusBarSettingsAssertion *assertion;
         [self removeNotch];
     }
 
-	if (!assertion && [[dict objectForKey:@"alwaysShow"] boolValue]) {
+	if (!assertion && [[dict objectForKey:@"eggAlwaysShow"] boolValue]) {
 		assertion = [[NSClassFromString(@"SBAppStatusBarSettingsAssertion") alloc] initWithStatusBarHidden:NO atLevel:5 reason:@"eggNotch"];
 		[assertion acquire];
 	}
