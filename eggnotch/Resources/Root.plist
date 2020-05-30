@@ -30,7 +30,7 @@
 			<key>defaults</key>
 			<string>com.crkatri.eggNotch</string>
 			<key>key</key>
-			<string>staticColor</string>
+			<string>eggStaticColor</string>
 			<key>label</key>
 			<string>Use a static color for text</string>
 			<key>PostNotification</key>
@@ -62,7 +62,7 @@
 			<key>defaults</key>
 			<string>com.crkatri.eggNotch</string>
 			<key>key</key>
-			<string>alwaysShow</string>
+			<string>eggAlwaysShow</string>
 			<key>label</key>
 			<string>Always Show (Glitchy)</string>
 			<key>PostNotification</key>
@@ -76,7 +76,7 @@
 			<key>defaults</key>
 			<string>com.crkatri.eggNotch</string>
 			<key>key</key>
-			<string>CornerRadius</string>
+			<string>eggCornerRadius</string>
 			<key>min</key>
 			<integer>0</integer>
 			<key>max</key>
