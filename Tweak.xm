@@ -1,15 +1,20 @@
-#include <CSColorPicker/CSColorPicker.h>
+#import "SparkColourPickerUtils.h"
 #import <Cephei/HBPreferences.h>
 #define PLIST_PATH @"/User/Library/Preferences/com.crkatri.eggNotch.plist"
 
-inline NSString *StringForPreferenceKey(NSString *key) {
-    NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:PLIST_PATH] ? : [NSDictionary new];
-    return prefs[key];
-}
+// inline NSString *StringForPreferenceKey(NSString *key) {
+//     NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:PLIST_PATH] ? : [NSDictionary new];
+//     return prefs[key];
+// }
+
+NSString* colourString = NULL;
+NSDictionary* preferencesDictionary = [NSDictionary dictionaryWithContentsOfFile: PLIST_PATH];
 
 HBPreferences *preferences;
-static BOOL alwaysShow;
-static BOOL 
+static BOOL eggAlwaysShow;
+static BOOL eggStaticColor;
+static float eggCornerRadius;
+
 
 @interface CALayer (Undocumented)
 @property (assign) BOOL continuousCorners;
@@ -24,13 +29,20 @@ static UIView* coverView(void) {
 
     CGRect frame = CGRectMake(-40.4, -7, screenBounds.size.width + 80.5, screenBounds.size.height+2000); //this is the border which will cover the notch
 
+    NSString* eggNotchColor = NULL;
+    if(preferencesDictionary)
+    {
+        eggNotchColor = [preferencesDictionary objectForKey: @"eggNotchColor"];
+    }
+    UIColor* eggNotchColorUIColor = [SparkColourPickerUtils colourWithString: eggNotchColor withFallback: @"#000000"];
+
     UIView *coverView = [[[UIView alloc] initWithFrame:frame] autorelease];
-    coverView.layer.borderColor = [UIColor cscp_colorFromHexString:StringForPreferenceKey(@"eggNotchColor")].CGColor;
+    coverView.layer.borderColor = eggNotchColorUIColor.CGColor;
     coverView.layer.borderWidth = 40.0f;
 
     [coverView setClipsToBounds:YES];
     [coverView.layer setMasksToBounds:YES];
-    coverView.layer.cornerRadius = [[prefs valueForKey:@"eggCornerRadius"] floatValue];
+    coverView.layer.cornerRadius = eggCornerRadius;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0 && [[[UIDevice currentDevice] systemVersion] floatValue] < 13.0) {
         coverView.layer.continuousCorners = YES;
     } else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 13.0) {
@@ -75,15 +87,23 @@ SBAppStatusBarSettingsAssertion *assertion;
 -(void)layoutSubviews {
 
     %orig;
-    if([[prefs objectForKey:@"eggStaticColor"] boolValue]) {
-        self.foregroundColor = [UIColor cscp_colorFromHexString:StringForPreferenceKey(@"eggNotchTextColor")];
+
+    NSString* eggNotchTextColor = NULL;
+    if(preferencesDictionary)
+    {
+        eggNotchTextColor = [preferencesDictionary objectForKey: @"eggNotchTextColor"];
+    }
+    UIColor* eggNotchTextColorUIColor = [SparkColourPickerUtils colourWithString: eggNotchTextColor withFallback: @"#FFFFFF"];
+
+    if(eggStaticColor) {
+        self.foregroundColor = eggNotchTextColorUIColor;
     }
 
     if(![[[UIApplication sharedApplication] keyWindow] isKindOfClass:%c(SBControlCenterWindow)] && !self.didRemoveNotch) {
         [self removeNotch];
     }
 
-	if (!assertion && [[prefs objectForKey:@"eggAlwaysShow"] boolValue]) {
+	if (!assertion && eggAlwaysShow) {
 		assertion = [[NSClassFromString(@"SBAppStatusBarSettingsAssertion") alloc] initWithStatusBarHidden:NO atLevel:5 reason:@"eggNotch"];
 		[assertion acquire];
 	}
@@ -121,5 +141,6 @@ SBAppStatusBarSettingsAssertion *assertion;
 %ctor {
    preferences = [[HBPreferences alloc] initWithIdentifier:@"com.crkatri.eggNotch"];
 
-   [preferences registerBool:&alwaysShow default:NO forKey:@"alwaysShow"];
+   [preferences registerBool:&eggAlwaysShow default:NO forKey:@"eggAlwaysShow"];
+   [preferences registerBool:&eggStaticColor default:NO forKey:@"eggStaticColor"];
  } 
