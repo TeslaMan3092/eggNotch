@@ -13,7 +13,7 @@ NSDictionary* preferencesDictionary = [NSDictionary dictionaryWithContentsOfFile
 HBPreferences *preferences;
 static BOOL eggAlwaysShow;
 static BOOL eggStaticColor;
-static float eggCornerRadius;
+static double eggCornerRadius;
 
 
 @interface CALayer (Undocumented)
@@ -143,4 +143,5 @@ SBAppStatusBarSettingsAssertion *assertion;
 
    [preferences registerBool:&eggAlwaysShow default:NO forKey:@"eggAlwaysShow"];
    [preferences registerBool:&eggStaticColor default:NO forKey:@"eggStaticColor"];
+   [preferences registerDouble:&eggCornerRadius default:75 forKey:@"eggCornerRadius"];
  } 
