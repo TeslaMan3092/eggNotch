@@ -1,4 +1,5 @@
 #include <CSColorPicker/CSColorPicker.h>
+#import <Cephei/HBPreferences.h>
 #define PLIST_PATH @"/User/Library/Preferences/com.crkatri.eggNotch.plist"
 
 inline NSString *StringForPreferenceKey(NSString *key) {
@@ -6,7 +7,9 @@ inline NSString *StringForPreferenceKey(NSString *key) {
     return prefs[key];
 }
 
-NSDictionary *prefs = [[NSDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.crkatri.eggNotch.plist"];
+HBPreferences *preferences;
+static BOOL alwaysShow;
+static BOOL 
 
 @interface CALayer (Undocumented)
 @property (assign) BOOL continuousCorners;
@@ -115,3 +118,8 @@ SBAppStatusBarSettingsAssertion *assertion;
 }
 %end
 
+%ctor {
+   preferences = [[HBPreferences alloc] initWithIdentifier:@"com.crkatri.eggNotch"];
+
+   [preferences registerBool:&alwaysShow default:NO forKey:@"alwaysShow"];
+ } 
