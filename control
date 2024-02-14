@@ -3,7 +3,7 @@ Name: eggNotch (Rootless)
 Depends: mobilesubstrate, com.spark.libsparkcolourpicker, ws.hbang.common
 Version: 0.0.4
 Architecture: iphoneos-arm
-Description: Hide the notch on notched iPhones, iOS 11? - 15
+Description: Hide the notch on notched iPhones, iOS 11? - 15. No xinamine or oldABI required 
 Maintainer: Egg aka CRKatri
 Author: Egg aka CRKatri
 Section: Tweaks
