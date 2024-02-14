@@ -38,31 +38,7 @@
 			<string>com.crkatri.eggNotch.prefsChanged</string>
 		</dict>
 
-		<dict>
-			<key>cell</key>
-			<string>PSStaticTextCell</string>
-			<key>label</key>
-			<string>Notch Y adjust:</string>
-		</dict>
-
-		<dict>
-			<key>cell</key>
-			<string>PSSliderCell</string>
-			<key>default</key>
-			<integer>5</integer>
-			<key>defaults</key>
-			<string>com.crkatri.eggNotch</string>
-			<key>key</key>
-			<string>eggNotchYAjust</string>
-			<key>min</key>
-			<integer>0</integer>
-			<key>max</key>
-			<integer>75</integer>
-			<key>showValue</key>
-			<true/>
-			<key>isSegmented</key>
-			<false/>
-		</dict>
+		
 
 		<dict>
 			<key>cell</key>
@@ -97,6 +73,40 @@
 			<key>PostNotification</key>
 			<string>com.crkatri.eggNotch.prefsChanged</string>
 		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Notch Y adjust</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>default</key>
+			<integer>5</integer>
+			<key>defaults</key>
+			<string>com.crkatri.eggNotch</string>
+			<key>key</key>
+			<string>eggNotchYAjust</string>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>75</integer>
+			<key>showValue</key>
+			<true/>
+			<key>isSegmented</key>
+			<false/>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Corner radius</string>
+		</dict>
+
 		<dict>
 			<key>cell</key>
 			<string>PSSliderCell</string>
@@ -120,13 +130,13 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string></string>
+			<string>respring</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>label</key>
-			<string>Apply Changes (respring)</string>
+			<string>Apply Changes</string>
 			<key>action</key>
 			<string>respring</string>
 		</dict>
