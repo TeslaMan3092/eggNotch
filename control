@@ -1,9 +1,9 @@
 Package: com.crkatri.eggnotch
-Name: eggNotch
+Name: eggNotch (Rootless)
 Depends: mobilesubstrate, com.spark.libsparkcolourpicker, ws.hbang.common
-Version: 0.0.3
+Version: 0.0.4
 Architecture: iphoneos-arm
-Description: Hide the notch on notched iPhones, iOS 11? - 13
+Description: Hide the notch on notched iPhones, iOS 11? - 15
 Maintainer: Egg aka CRKatri
 Author: Egg aka CRKatri
 Section: Tweaks
