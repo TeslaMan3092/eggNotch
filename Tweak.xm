@@ -1,6 +1,6 @@
 #import "SparkColourPickerUtils.h"
 #import <Cephei/HBPreferences.h>
-#define PLIST_PATH @"/var/jb/User/Library/Preferences/com.crkatri.eggNotch.plist"
+#define PLIST_PATH @"/User/Library/Preferences/com.crkatri.eggNotch.plist"
 
 // inline NSString *StringForPreferenceKey(NSString *key) {
 //     NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:PLIST_PATH] ? : [NSDictionary new];
