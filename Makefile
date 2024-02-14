@@ -1,7 +1,7 @@
 ARCHS = arm64 arm64e
 
 GO_EASY_ON_ME = 1
-
+FINALPACKAGE=1
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = eggNotch
@@ -15,4 +15,4 @@ SUBPROJECTS += eggnotch
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 after-install::
-	install.exec "killall -9 SpringBoard"
+	install.exec "killall SpringBoard"

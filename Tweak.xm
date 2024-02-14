@@ -1,6 +1,6 @@
 #import "SparkColourPickerUtils.h"
 #import <Cephei/HBPreferences.h>
-#define PLIST_PATH @"/User/Library/Preferences/com.crkatri.eggNotch.plist"
+#define PLIST_PATH @"/var/jb/User/Library/Preferences/com.crkatri.eggNotch.plist"
 
 // inline NSString *StringForPreferenceKey(NSString *key) {
 //     NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:PLIST_PATH] ? : [NSDictionary new];
@@ -14,6 +14,8 @@ HBPreferences *preferences;
 static BOOL eggAlwaysShow;
 static BOOL eggStaticColor;
 static double eggCornerRadius;
+static double eggNotchYAjust;
+static double borderSize = 80;
 
 
 @interface CALayer (Undocumented)
@@ -27,7 +29,7 @@ static UIView* coverView(void) {
 
     CGRect screenBounds = [UIScreen mainScreen].bounds;
 
-    CGRect frame = CGRectMake(-40.4, -7, screenBounds.size.width + 80.5, screenBounds.size.height+2000); //this is the border which will cover the notch
+    CGRect frame = CGRectMake(-((eggNotchYAjust + borderSize)/2), -7, screenBounds.size.width + borderSize + eggNotchYAjust, screenBounds.size.height+2000); //this is the border which will cover the notch
 
     NSString* eggNotchColor = NULL;
     if(preferencesDictionary)
@@ -38,11 +40,11 @@ static UIView* coverView(void) {
 
     UIView *coverView = [[[UIView alloc] initWithFrame:frame] autorelease];
     coverView.layer.borderColor = eggNotchColorUIColor.CGColor;
-    coverView.layer.borderWidth = 40.0f;
+    coverView.layer.borderWidth = (borderSize + eggNotchYAjust)/2;
 
     [coverView setClipsToBounds:YES];
     [coverView.layer setMasksToBounds:YES];
-    coverView.layer.cornerRadius = eggCornerRadius;
+    coverView.layer.cornerRadius = eggCornerRadius + eggNotchYAjust;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0 && [[[UIDevice currentDevice] systemVersion] floatValue] < 13.0) {
         coverView.layer.continuousCorners = YES;
     } else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 13.0) {
@@ -144,4 +146,5 @@ SBAppStatusBarSettingsAssertion *assertion;
    [preferences registerBool:&eggAlwaysShow default:NO forKey:@"eggAlwaysShow"];
    [preferences registerBool:&eggStaticColor default:NO forKey:@"eggStaticColor"];
    [preferences registerDouble:&eggCornerRadius default:75 forKey:@"eggCornerRadius"];
+   [preferences registerDouble:&eggNotchYAjust default:5 forKey:@"eggNotchYAjust"];
  } 
